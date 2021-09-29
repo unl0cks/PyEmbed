@@ -12,12 +12,12 @@ client = discord.Client()
 bot = commands.Bot(command_prefix='>!')
 
 # Events for the bot to perform.
-@client.event()
+@client.event
 async def on_ready():
   # Print this when the bot starts up for the first time.
   print(f"{client.user} has connected to Discord!")
 
-@client.event()
+@client.event
 async def on_message(message):
   # Ignore messages from the bot itself so that there's no conflict.
   if message.author == client.user:
