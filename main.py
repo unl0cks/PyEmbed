@@ -16,6 +16,7 @@ async def on_ready():
   # Print this when the bot starts up for the first time.
   print(f"{bot.user} has connected to Discord!")
 
+@bot.event
 async def on_message(message):
   # Ignore messages from the bot itself so that there's no conflict.
   if message.author == bot.user:
