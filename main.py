@@ -48,8 +48,7 @@ async def info(ctx):
 
 @bot.listen()
 async def on_message(message):
-  yturl = ['yt', 'youtube', 'ut', 'utube']
-  if yturl.lower() in message.content.lower():
+  if 'youtube' in message.content.lower():
     await message.channel.send('https://www.youtube.com/Schitzor')
     await bot.process_commands(message)
 
