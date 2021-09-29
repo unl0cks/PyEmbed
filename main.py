@@ -45,8 +45,8 @@ async def info(ctx):
 @bot.listen()
 async def on_message(message):
   if "ytc" in message.content.lower():
-      await message.channel.send('https://www.youtube.com/Schitzor')
-      await bot.process_commands(message)
+    await message.channel.send('https://www.youtube.com/Schitzor')
+    await bot.process_commands(message)
 
-
+    
 client.run(token)
