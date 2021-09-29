@@ -9,6 +9,7 @@ load_dotenv()
 token = os.getenv('token')
 client = discord.Client()
 bot = commands.Bot(command_prefix='!e')
+bot = discord.Client()
 
 # Events for the bot to perform.
 @client.event
@@ -22,7 +23,7 @@ async def on_message(message):
   if message.author == client.user:
     return
 
-  if message.author == 'thanks':
+  if message.content == 'thanks':
     # Respond to thanks.
     await message.channel.send("You're welcome!")
 
