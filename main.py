@@ -1,8 +1,8 @@
 # Import libraries.
 import os
-from typing import ContextManager
 import discord
 from discord.ext import commands
+from discord.ext.commands import Bot
 from dotenv import load_dotenv
 import datetime
 
@@ -10,6 +10,7 @@ import datetime
 load_dotenv('main.env')
 token = os.getenv('token')
 
+client = discord.Client()
 bot = commands.Bot(command_prefix='!')
 
 # Events for the bot to perform.
@@ -27,6 +28,8 @@ async def on_message(message):
   if message.content == 'thanks':
     # Respond to thanks.
     await message.channel.send("You're welcome!")
+  
+  await bot.process_commands(message)
 
 # Bot commands.
 @bot.command()
@@ -35,7 +38,7 @@ async def ping(ctx):
 
 @bot.command()
 async def info(ctx):
-  embed = discord.Embed(title=f"{ctx.guild.name}", description="Lorem Ipsum asdasd", timestamp=datetime.datetime.utcnow(), color=discord.Color.blue())
+  embed = discord.Embed(title=f"{ctx.guild.name}", description="Embed bot made using Python 3.9.7.", timestamp=datetime.datetime.utcnow(), color=discord.Color.blue())
   embed.add_field(name="Server created at", value=f"{ctx.guild.created_at}")
   embed.add_field(name="Server Owner", value=f"{ctx.guild.owner}")
   embed.add_field(name="Server Region", value=f"{ctx.guild.region}")
@@ -45,7 +48,8 @@ async def info(ctx):
 
 @bot.listen()
 async def on_message(message):
-  if "ytc" in message.content.lower():
+  yturl = ['yt', 'youtube', 'ut', 'utube']
+  if yturl.lower() in message.content.lower():
     await message.channel.send('https://www.youtube.com/Schitzor')
     await bot.process_commands(message)
 
