@@ -1,15 +1,16 @@
+# Import libraries.
 import os
 import discord
-from MaxEmbeds import EmbedBuilder
+from discord.ext import commands
 from dotenv import load_dotenv
 
+# Setup main.env and run Discord.
 load_dotenv()
-
-token = os.getenv("token")
-
+token = os.getenv('token')
 client = discord.Client()
+bot = commands.Bot(command_prefix='!e')
 
-
+# Events for the bot to perform.
 @client.event
 async def on_ready():
   # Print this when the bot starts up for the first time.
@@ -25,21 +26,13 @@ async def on_message(message):
     # Respond to thanks.
     await message.channel.send("You're welcome!")
 
-@client.event
-async def on_message(message):
-  if not message.author.bot:
-    if message.content.starswith("MaxEmbeds"):
-      embed = EmbedBuilder (
-        title = "PyEmbed",
-        description = "This bot can post embeds with codeblocks. It's made using Python 3.9.7",
-        color = discord.Color.red(),
-        fields = [["Field 1", "Test field", True], ["Field 2", "Test field", True]],
-        footer = ["Test footer", message.author.avatar_url],
-        author = [message.author.name, message.author.avatar_url],
-        thumbnail = message.author.avatar_url
-      ).build()
-      
-      await message.channel.send(embed=embed)
+# Bot commands.
+@bot.command()
+async def displayembed(ctx):
+  embed = discord.Embed(title="Your title here", description="Your desc here") #,color=Hex code
+  embed.add_field(name="Name", value="you can make as much as fields you like to")
+  embed.set_footer(name="footer") #if you like to
+  await ctx.send(embed=embed)
 
 
 client.run(token)
