@@ -30,23 +30,23 @@ async def on_message(message):
 # Bot commands.
 @bot.command()
 async def ping(ctx):
-    await ctx.send('pong')
+  await ctx.send('pong')
 
 @bot.command()
 async def info(ctx):
-    embed = discord.Embed(title=f"{ctx.guild.name}", description="Lorem Ipsum asdasd", timestamp=datetime.datetime.utcnow(), color=discord.Color.blue())
-    embed.add_field(name="Server created at", value=f"{ctx.guild.created_at}")
-    embed.add_field(name="Server Owner", value=f"{ctx.guild.owner}")
-    embed.add_field(name="Server Region", value=f"{ctx.guild.region}")
-    embed.add_field(name="Server ID", value=f"{ctx.guild.id}")
+  embed = discord.Embed(title=f"{ctx.guild.name}", description="Lorem Ipsum asdasd", timestamp=datetime.datetime.utcnow(), color=discord.Color.blue())
+  embed.add_field(name="Server created at", value=f"{ctx.guild.created_at}")
+  embed.add_field(name="Server Owner", value=f"{ctx.guild.owner}")
+  embed.add_field(name="Server Region", value=f"{ctx.guild.region}")
+  embed.add_field(name="Server ID", value=f"{ctx.guild.id}")
 
-    await ctx.send(embed=embed)
+  await ctx.send(embed=embed)
 
 @bot.listen()
 async def on_message(message):
-    if "ytc" in message.content.lower():
-        await message.channel.send('https://www.youtube.com/Schitzor')
-        await bot.process_commands(message)
+  if "ytc" in message.content.lower():
+      await message.channel.send('https://www.youtube.com/Schitzor')
+      await bot.process_commands(message)
 
 
 client.run(token)
