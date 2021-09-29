@@ -1,26 +1,27 @@
 # Import libraries.
 import os
+from typing import ContextManager
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
 import datetime
 
 # Setup main.env and run Discord.
-load_dotenv()
+load_dotenv('main.env')
 token = os.getenv('token')
-client = discord.Client()
-bot = commands.Bot(command_prefix='>!')
+
+bot = commands.Bot(command_prefix='!')
 
 # Events for the bot to perform.
-@client.event
+@bot.event
 async def on_ready():
   # Print this when the bot starts up for the first time.
-  print(f"{client.user} has connected to Discord!")
+  print(f"{bot.user} has connected to Discord!")
 
-@client.event
+@bot.event
 async def on_message(message):
   # Ignore messages from the bot itself so that there's no conflict.
-  if message.author == client.user:
+  if message.author == bot.user:
     return
 
   if message.content == 'thanks':
@@ -48,5 +49,5 @@ async def on_message(message):
     await message.channel.send('https://www.youtube.com/Schitzor')
     await bot.process_commands(message)
 
-    
-client.run(token)
+
+bot.run(token)
