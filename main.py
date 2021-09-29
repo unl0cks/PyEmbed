@@ -11,12 +11,12 @@ token = os.getenv('token')
 bot = commands.Bot(command_prefix='!')
 
 # Events for the bot to perform.
-@bot.event
+@bot.event()
 async def on_ready():
   # Print this when the bot starts up for the first time.
   print(f"{bot.user} has connected to Discord!")
 
-@bot.event
+@bot.event()
 async def on_message(message):
   # Ignore messages from the bot itself so that there's no conflict.
   if message.author == bot.user:
@@ -43,6 +43,5 @@ async def info(ctx):
   embed.add_field(name="Server Region", value=f"{ctx.guild.region}")
   embed.add_field(name="Server ID", value=f"{ctx.guild.id}")
   await ctx.send(embed=embed)
-
 
 bot.run(token)
