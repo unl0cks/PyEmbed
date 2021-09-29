@@ -8,6 +8,7 @@ import datetime
 # Setup main.env and run Discord.
 load_dotenv('main.env')
 token = os.getenv('token')
+client = discord.Client()
 bot = commands.Bot(command_prefix='!')
 
 # Events for the bot to perform.
