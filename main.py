@@ -34,6 +34,10 @@ async def on_message(message):
 @bot.command()
 async def ping(ctx):
   await ctx.send('pong')
+  
+@bot.command()
+async def youtube(ctx):
+  await ctx.send('https://www.youtube.com/Schitzor')
 
 @bot.command()
 async def info(ctx):
@@ -44,12 +48,6 @@ async def info(ctx):
   embed.add_field(name="Server ID", value=f"{ctx.guild.id}")
 
   await ctx.send(embed=embed)
-
-@bot.listen()
-async def on_message(message):
-  if 'youtube' in message.content.lower():
-    await message.channel.send('https://www.youtube.com/Schitzor')
-    await bot.process_commands(message)
 
 
 bot.run(token)
