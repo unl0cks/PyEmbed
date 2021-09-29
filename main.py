@@ -3,13 +3,13 @@ import os
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
+import datetime
 
 # Setup main.env and run Discord.
 load_dotenv()
 token = os.getenv('token')
 client = discord.Client()
-bot = commands.Bot(command_prefix='!e')
-bot = discord.Client()
+bot = commands.Bot(command_prefix='>!')
 
 # Events for the bot to perform.
 @client.event()
@@ -29,11 +29,24 @@ async def on_message(message):
 
 # Bot commands.
 @bot.command()
-async def displayembed(ctx):
-  embed = discord.Embed(title="Your title here", description="Your desc here") #,color=Hex code
-  embed.add_field(name="Name", value="you can make as much as fields you like to")
-  embed.set_footer(name="footer") #if you like to
-  await ctx.send(embed=embed)
+async def ping(ctx):
+    await ctx.send('pong')
+
+@bot.command()
+async def info(ctx):
+    embed = discord.Embed(title=f"{ctx.guild.name}", description="Lorem Ipsum asdasd", timestamp=datetime.datetime.utcnow(), color=discord.Color.blue())
+    embed.add_field(name="Server created at", value=f"{ctx.guild.created_at}")
+    embed.add_field(name="Server Owner", value=f"{ctx.guild.owner}")
+    embed.add_field(name="Server Region", value=f"{ctx.guild.region}")
+    embed.add_field(name="Server ID", value=f"{ctx.guild.id}")
+
+    await ctx.send(embed=embed)
+
+@bot.listen()
+async def on_message(message):
+    if "ytc" in message.content.lower():
+        await message.channel.send('https://www.youtube.com/Schitzor')
+        await bot.process_commands(message)
 
 
 client.run(token)
