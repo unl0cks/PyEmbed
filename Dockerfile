@@ -6,7 +6,6 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 COPY . .
 
-RUN py -3 -m pip install discord.py
-RUN py -3 -m pip install -U discord.py python-dotenv
+RUN pip install discord.py python-dotenv
 
-CMD py -3 -u ./main.py
+CMD [ "python", "main.py" ]
