@@ -1,6 +1,6 @@
 import os
 import discord
-from maxembeds import EmbedBuilder
+from MaxEmbeds import EmbedBuilder
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -16,7 +16,7 @@ async def on_ready():
   print(f"{client.user} has connected to Discord!")
 
 @client.event
-async def on_message():
+async def on_message(message):
   # Ignore messages from the bot itself so that there's no conflict.
   if message.author == client.user:
     return
@@ -30,7 +30,7 @@ async def on_message(message):
   if not message.author.bot:
     if message.content.starswith("MaxEmbeds"):
       embed = EmbedBuilder (
-        title = "PyEmbedder",
+        title = "PyEmbed",
         description = "This bot can post embeds with codeblocks. It's made using Python 3.9.7",
         color = discord.Color.red(),
         fields = [["Field 1", "Test field", True], ["Field 2", "Test field", True]],

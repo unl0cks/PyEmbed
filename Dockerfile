@@ -4,6 +4,6 @@ WORKDIR /app
 
 COPY . .
 
-RUN python3 -m pip install -U discord.py python-dotenv
+RUN py -3 -m pip install -U discord.py==1.7.3 python-dotenv
 
-CMD python -u ./main.py
+CMD py -3 -u ./main.py
